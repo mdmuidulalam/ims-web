@@ -5,19 +5,19 @@ import { Button, Input, Layout } from "antd";
 import "antd/dist/antd.css";
 import SigninStyles from "./signin.less";
 
-import { SIGNIN_ACTIONS } from "../../../redux/account/signin/signinActions";
+import { SIGNIN_ACTIONS } from "../../../../redux/account/signin/signinActions";
 
 const Signin = (props) => {
-  useEffect(() => {
-    return (props) => {
-      props.unload();
-    };
-  }, []);
+  // useEffect(() => {
+  //   return (props) => {
+  //     props.unload();
+  //   };
+  // }, []);
 
   return (
-    <div>
+    <>
       <Layout className={SigninStyles["layout"]}>
-        <Layout.Content className={SigninStyles["content"]}>
+        <Layout.Content>
           <div className="site-layout-content">
             <span>Username: </span>
             <Input
@@ -38,16 +38,16 @@ const Signin = (props) => {
               }
             />
             <Button
-              type="primary"
+              type="danger"
               onClick={props.signinClick}
               className={SigninStyles["button"]}
             >
-              Sign in
+              Continue
             </Button>
           </div>
         </Layout.Content>
       </Layout>
-    </div>
+    </>
   );
 };
 
