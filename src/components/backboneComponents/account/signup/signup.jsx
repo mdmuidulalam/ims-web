@@ -1,22 +1,50 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Button, Input, Layout } from "antd";
 
 import "antd/dist/antd.css";
-import SignupStyles from "./signup.less";
+import { SIGNUP_ACTIONS } from "../../../../redux/account/signup/signupActions";
 
-const Signup = () => {
+const Signup = (props) => {
+  useEffect(() => {
+    return () => {
+      props.unload();
+    };
+  }, []);
+
   return (
     <>
-      <Layout className={SignupStyles["layout"]}>
+      <Layout className={props.accountStyles["layout"]}>
         <Layout.Content>
           <div className="site-layout-content">
-            <span>Email: </span>
-            <Input name="Email" type="text" />
             <span>Full Name: </span>
-            <Input name="FullName" type="text" />
+            <Input
+              name="fullName"
+              type="text"
+              value={props.fullName}
+              onChange={(event) =>
+                props.signupStateUpdate(event.target.name, event.target.value)
+              }
+            />
+            <span>Email: </span>
+            <Input
+              name="email"
+              type="email"
+              value={props.email}
+              onChange={(event) =>
+                props.signupStateUpdate(event.target.name, event.target.value)
+              }
+            />
             <span>Password: </span>
-            <Input.Password name="password" type="password" />
-            <Button type="danger" className={SignupStyles["button"]}>
+            <Input.Password
+              name="password"
+              type="password"
+              value={props.password}
+              onChange={(event) =>
+                props.signupStateUpdate(event.target.name, event.target.value)
+              }
+            />
+            <Button type="danger" className={props.accountStyles["button"]}>
               Continue
             </Button>
           </div>
@@ -25,5 +53,13 @@ const Signup = () => {
     </>
   );
 };
+const mapStateToProps = (state) => ({ ...state.signup });
 
-export default Signup;
+const mapDispatchToProps = (dispatch) => ({
+  signupStateUpdate: (key, payload) =>
+    dispatch({ type: SIGNUP_ACTIONS.UPDATE_STATE, key: key, payload: payload }),
+  signupClick: () => dispatch({ type: SIGNUP_ACTIONS.SIGNUP }),
+  unload: () => dispatch({ type: SIGNUP_ACTIONS.UNLOAD }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -3,20 +3,19 @@ import { connect } from "react-redux";
 import { Button, Input, Layout } from "antd";
 
 import "antd/dist/antd.css";
-import SigninStyles from "./signin.less";
 
 import { SIGNIN_ACTIONS } from "../../../../redux/account/signin/signinActions";
 
 const Signin = (props) => {
-  // useEffect(() => {
-  //   return (props) => {
-  //     props.unload();
-  //   };
-  // }, []);
+  useEffect(() => {
+    return () => {
+      props.unload();
+    };
+  }, []);
 
   return (
     <>
-      <Layout className={SigninStyles["layout"]}>
+      <Layout className={props.accountStyles["layout"]}>
         <Layout.Content>
           <div className="site-layout-content">
             <span>Username: </span>
@@ -40,7 +39,7 @@ const Signin = (props) => {
             <Button
               type="danger"
               onClick={props.signinClick}
-              className={SigninStyles["button"]}
+              className={props.accountStyles["button"]}
             >
               Continue
             </Button>
@@ -57,7 +56,7 @@ const mapDispatchToProps = (dispatch) => ({
   signinStateUpdate: (key, payload) =>
     dispatch({ type: SIGNIN_ACTIONS.UPDATE_STATE, key: key, payload: payload }),
   signinClick: () => dispatch({ type: SIGNIN_ACTIONS.SIGNIN }),
-  unload: () => dispatch({ type: SIGNIN_ACTIONS.UNLOADED }),
+  unload: () => dispatch({ type: SIGNIN_ACTIONS.UNLOAD }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);

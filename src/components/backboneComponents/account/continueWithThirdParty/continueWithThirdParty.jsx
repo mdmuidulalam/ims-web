@@ -6,7 +6,6 @@ import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 
 import "antd/dist/antd.css";
-import ContinueWithThirdPartyStyles from "./continueWithThirdParty.less";
 
 const ContinueWithThirdParty = (props) => {
   const responseGoogle = (response) => {
@@ -19,7 +18,7 @@ const ContinueWithThirdParty = (props) => {
 
   return (
     <div>
-      <Layout className={ContinueWithThirdPartyStyles["layout"]}>
+      <Layout className={props.accountStyles["layout"]}>
         <Layout.Content>
           <div className="site-layout-content">
             <GoogleLogin
@@ -27,7 +26,7 @@ const ContinueWithThirdParty = (props) => {
               render={(renderProps) => (
                 <Button
                   type="danger"
-                  className={ContinueWithThirdPartyStyles["button"]}
+                  className={props.accountStyles["button"]}
                   onClick={renderProps.onClick}
                 >
                   <span>
@@ -40,7 +39,7 @@ const ContinueWithThirdParty = (props) => {
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
-              className={ContinueWithThirdPartyStyles["button"]}
+              className={props.accountStyles["button"]}
             />
             <FacebookLogin
               appId="349637109365126"
@@ -48,7 +47,7 @@ const ContinueWithThirdParty = (props) => {
               render={(renderProps) => (
                 <Button
                   type="danger"
-                  className={ContinueWithThirdPartyStyles["button"]}
+                  className={props.accountStyles["button"]}
                   onClick={renderProps.onClick}
                 >
                   <span>

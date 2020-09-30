@@ -13,9 +13,7 @@ import { AccountAuthenticationTypes } from "../../../enums/account";
 
 const Account = (props) => {
   let { path, url } = useRouteMatch();
-  console.log(
-    "hhhhhhhhhhhhhhhhhhhhhhhhhhhh" + props.accountAuthenticationTypes
-  );
+
   return (
     <>
       <Row>
@@ -30,13 +28,13 @@ const Account = (props) => {
             <Row>
               <Switch>
                 <Route path={`${path}/signin`}>
-                  <Signin />
+                  <Signin accountStyles={AccountStyles} />
                 </Route>
                 <Route path={`${path}/signup`}>
-                  <Signup />
+                  <Signup accountStyles={AccountStyles} />
                 </Route>
                 <Route path={path}>
-                  <Signin />
+                  <Signin accountStyles={AccountStyles} />
                 </Route>
               </Switch>
             </Row>
@@ -77,7 +75,7 @@ const Account = (props) => {
               <span className={AccountStyles["or-text"]}> OR </span>
             </Row>
             <Row>
-              <ContinueWithThirdParty />
+              <ContinueWithThirdParty accountStyles={AccountStyles} />
             </Row>
           </section>
         </Col>

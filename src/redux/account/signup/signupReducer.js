@@ -1,23 +1,24 @@
-import { SIGNIN_ACTIONS } from "./signinActions";
+import { SIGNUP_ACTIONS } from "./signupActions";
 
-export const signinReducer = (
+export const signupReducer = (
   state = {
-    username: "",
+    fullName: "",
+    email: "",
     password: "",
   },
   action
 ) => {
   switch (action.type) {
-    case SIGNIN_ACTIONS.UPDATE_STATE:
+    case SIGNUP_ACTIONS.UPDATE_STATE:
       return {
         ...state,
         [action.key]: action.payload,
       };
-    case SIGNIN_ACTIONS.SIGNIN:
+    case SIGNUP_ACTIONS.SIGNUP:
       return {
         ...state,
       };
-    case SIGNIN_ACTIONS.UNLOAD:
+    case SIGNUP_ACTIONS.UNLOAD:
       return {};
     default:
       return state;
