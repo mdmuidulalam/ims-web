@@ -44,7 +44,11 @@ const Signup = (props) => {
                 props.signupStateUpdate(event.target.name, event.target.value)
               }
             />
-            <Button type="danger" className={props.accountStyles["button"]}>
+            <Button
+              type="danger"
+              className={props.accountStyles["button"]}
+              onClick={props.signupClick}
+            >
               Continue
             </Button>
           </div>
@@ -58,7 +62,7 @@ const mapStateToProps = (state) => ({ ...state.signup });
 const mapDispatchToProps = (dispatch) => ({
   signupStateUpdate: (key, payload) =>
     dispatch({ type: SIGNUP_ACTIONS.UPDATE_STATE, key: key, payload: payload }),
-  signupClick: () => dispatch({ type: SIGNUP_ACTIONS.SIGNUP }),
+  signupClick: () => dispatch({ type: SIGNUP_ACTIONS.SIGNUP_SAGA }),
   unload: () => dispatch({ type: SIGNUP_ACTIONS.UNLOAD }),
 });
 

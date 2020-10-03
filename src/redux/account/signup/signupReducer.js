@@ -14,9 +14,10 @@ export const signupReducer = (
         ...state,
         [action.key]: action.payload,
       };
-    case SIGNUP_ACTIONS.SIGNUP:
+    case SIGNUP_ACTIONS.SIGNUP_SAGA_SUCCESS:
       return {
         ...state,
+        fullName: "Success",
       };
     case SIGNUP_ACTIONS.UNLOAD:
       return {};
